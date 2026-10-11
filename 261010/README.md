@@ -10,3 +10,5 @@ TODO: NumPy 연산 함수를 사용하여 배열을 0.0 ~ 1.0 범위의 float32 
 TODO: 최종 배열의 최솟값 = 0.0, 최종 배열의 최댓값 = 1.0
 
 and final cell in this python file
+
+Just execute assignment01.py only. No necessity for another file
