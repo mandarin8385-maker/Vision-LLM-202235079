@@ -33,4 +33,5 @@ ChatGPT를 활용하여 Python 실행 환경에서 발생한 라이브러리 설
 ### 추가 설명
 
 Morphological Operation을 여러 번 적용한다고 반드시 좋은 결과가 나오는 것은 아니라고 판단하였습니다.
+
 따라서 Opening과 Closing의 적용 횟수를 변경하며 결과를 비교하였고, Closing을 추가로 적용해도 뚜렷한 차이가 없어 Opening 2회를 최종적으로 선택하였습니다.
