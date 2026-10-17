@@ -8,7 +8,7 @@
 
 ## 실행 방식
 필요한 라이브러리: OpenCV, NumPy, Matplotlib, scikit-image
-1. Python IDLE에서 assigment2.py 파일을 엽니다.
+1. Python IDLE에서 assigment02.py 파일을 엽니다.
 2. Run Module(F5)을 통해 코드를 실행합니다.
 3. Matplotlib 창에서 최종 농구공 영역 및 외곽선 검출 결과를 확인합니다.
 * 이미지 파일은 실행 위치를 기준으로 ../src/images/basketball_crop.jpg 경로에 있어야 합니다.
