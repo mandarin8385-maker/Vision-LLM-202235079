@@ -63,7 +63,7 @@ ball_mask_closed2 = cv2.morphologyEx(ball_mask_opened2, cv2.MORPH_CLOSE, kernel,
 ball_mask_closed3 = cv2.morphologyEx(ball_mask_opened2, cv2.MORPH_CLOSE, kernel, iterations=3)
 
 # 최종 binary mask
-final_ball_mask = ball_mask_opened2
+final_basketball_mask = ball_mask_opened2
 
 # TODO: Binary mask로 외곽선 검출
 # TODO: 최종 농구공 영역 및 외곽선 선택 
@@ -73,7 +73,7 @@ final_img = basketball.copy()
 
 # 컨투어 추출 
 contours, _ = cv2.findContours(
-    final_ball_mask,        
+    final_basketball_mask,        
     cv2.RETR_EXTERNAL,       
     cv2.CHAIN_APPROX_SIMPLE  
 )
@@ -83,7 +83,7 @@ if len(contours) > 0:
     largest_contour = max(contours, key=cv2.contourArea)
 
     # 가장 큰 contour만 채운 binary mask 생성
-    final_mask = np.zeros_like(final_ball_mask)
+    final_mask = np.zeros_like(final_basketball_mask)
     cv2.drawContours(
         final_mask,
         [largest_contour],
