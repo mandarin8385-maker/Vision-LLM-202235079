@@ -65,10 +65,16 @@ finger_angle_points = (
 )
 
 #####################################################
-# macOS 카메라 연결. Jetson에서는 카메라 연결 코드 변경 필요
-cap = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)
-if not cap.isOpened():
-    raise RuntimeError("카메라를 열 수 없습니다.")
+pipeline = (
+    "v4l2src device=/dev/video0 ! "
+    "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
+    "videoconvert ! video/x-raw,format=BGR ! "
+    "queue leaky=downstream max-size-buffers=1 "
+    "max-size-bytes=0 max-size-time=0 ! "
+    "appsink drop=true max-buffers=1 sync=false"
+)
+
+cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
 #####################################################
 
 while True:
@@ -81,7 +87,7 @@ while True:
     h, w = frame.shape[:2]
 
     # 이미지 좌우 반전 및 RGB로 색공간 변환 (전처리)
-    frame = cv2.flip(frame, 1)
+    # frame = cv2.flip(frame, 1)
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     # 프레임 내 손 탐지
@@ -143,8 +149,8 @@ while True:
         status = "Waiting for 2 players"
         status_color = (0,255,255)    # 노란색
 
-    cv2.putText(frame, f"Players: {player_count}/2", (20,35), cv2.FONT_HERSHEY_SIMPLEX, 0.8, status_color, 2)
-    cv2.putText(frame, status, (20,70), cv2.FONT_HERSHEY_SIMPLEX, 0.8, status_color, 2)
+    cv2.putText(frame, f"Players: {player_count}/2", (10,20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, status_color, 1)
+    cv2.putText(frame, status, (10,40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, status_color, 1)
 
     # 기본 색: 노란색
     player_colors = [(0,255,255), (0,255,255)]
@@ -178,7 +184,7 @@ while True:
         text_y = max(70, min([point[1] for point in points]) - 20)
         # 현재 손에 해당하는 가위바위보 모양
         shape = hand_shapes[index]
-        cv2.putText(frame, shape, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 2, player_colors[index], 3)
+        cv2.putText(frame, shape, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 1.5, player_colors[index], 3)
 
     # 상단에 표시할 기본 문구와 색상
     result_text = "Waiting for 2 players"
@@ -211,7 +217,7 @@ while True:
     text_size = cv2.getTextSize(result_text, cv2.FONT_HERSHEY_SIMPLEX, 1.2, 2)[0]
     result_x = (w - text_size[0]) // 2
 
-    cv2.putText(frame, result_text, (result_x,150), cv2.FONT_HERSHEY_SIMPLEX, 1.2, result_color, 2) 
+    cv2.putText(frame, result_text, (result_x,100), cv2.FONT_HERSHEY_SIMPLEX, 1.2, result_color, 2) 
 
     # 모든 손의 글씨를 그린 뒤 키 입력 확인
     key = cv2.waitKey(1) & 0xFF
