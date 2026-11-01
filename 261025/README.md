@@ -30,4 +30,5 @@ python assignment03_1.py
 - 데이터셋이 없으면 처음 실행할 때 다운로드합니다.
 - 4번은 모델을 `261025/CIFAR10_CNN.pth`와 `src/models/CIFAR10/CIFAR10_CNN.pth`에 각각 저장합니다. `src/models/CIFAR10/` 폴더는 미리 준비해야 합니다.
 - 6번은 박스와 신뢰도를 무작위로 생성하므로 결과가 달라질 수 있습니다.
+- Jetson CUDA 환경에서 실행을 확인한 뒤, 경로 처리를 각 Python 파일의 위치를 기준으로 찾도록 수정했습니다.
 - **AI 활용**: ChatGPT로 TODO 구현 예시, Python 문법·오류 설명, README 정리에 도움을 받았으며, 코드는 직접 파일에 반영했습니다.
