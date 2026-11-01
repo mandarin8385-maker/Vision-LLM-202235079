@@ -8,16 +8,17 @@
 - **assignment03_4.py**: CIFAR-10 모델 학습 및 저장
 - **assignment03_5.py**: IoU 구현
 - **assignment03_6.py**: NMS 구현
-- **CIFAR10_CNN.pth**: 4번 학습 완료 후 `261025` 폴더에 생성되는 모델 파일
+- **CIFAR10_CNN.pth**: 제출용 CIFAR-10 학습 모델
 - **../src/images/**: 입력 이미지 `seagull.jpg`, `two_apples1.png`~`two_apples3.png`
-- **../src/datasets/**: MNIST·CIFAR-10 데이터셋
-- **../src/models/CIFAR10/CIFAR10_CNN.pth**: 4번 학습 완료 후 생성되는 모델 파일
+- **../src/datasets/**: MNIST·CIFAR-10 데이터셋 저장 폴더
 
 ## 실행 방식
 
 필요한 라이브러리: NumPy, OpenCV, Matplotlib, CuPy, PyTorch, Torchvision, scikit-image
 
-필요한 라이브러리가 설치된 Python 환경을 선택하고, 터미널의 현재 위치를 `261025` 폴더로 맞춥니다. `src`와 `261025`는 같은 상위 폴더 아래에 있어야 합니다.
+1~4번은 NVIDIA CUDA GPU 환경에서, 5~6번은 CPU 환경에서도 실행할 수 있습니다.
+
+`src`와 `261025`는 같은 상위 폴더 아래에 있어야 합니다. 아래는 터미널 위치가 `261025`일 때의 실행 예시입니다.
 
 ```bash
 python assignment03_1.py
@@ -27,7 +28,8 @@ python assignment03_1.py
 
 ## 기타 참고 사항
 
-- macOS의 VS Code에서 작성했습니다. GPU 전체 실행 확인과 4번 모델 파일 생성은 학교 CUDA 환경에서 진행할 예정입니다.
-- 데이터셋이 없으면 처음 실행할 때 다운로드합니다. 4번은 학습한 모델을 `../src/models/CIFAR10/`와 현재 실행 폴더에 각각 저장합니다. 저장 폴더를 미리 준비하고, `261025` 폴더에서 실행해야 합니다.
+- 경로는 각 Python 파일의 위치를 기준으로 찾습니다.
+- 데이터셋이 없으면 처음 실행할 때 다운로드합니다.
+- 4번은 모델을 `261025/CIFAR10_CNN.pth`와 `src/models/CIFAR10/CIFAR10_CNN.pth`에 각각 저장합니다. `src/models/CIFAR10/` 폴더는 미리 준비해야 합니다.
 - 6번은 박스와 신뢰도를 무작위로 생성하므로 결과가 달라질 수 있습니다.
 - **AI 활용**: ChatGPT로 TODO 구현 예시, Python 문법·오류 설명, README 정리에 도움을 받았으며, 코드는 직접 파일에 반영했습니다.
