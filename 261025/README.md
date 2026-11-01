@@ -8,9 +8,9 @@
 - **assignment03_4.py**: CIFAR-10 모델 학습 및 저장
 - **assignment03_5.py**: IoU 구현
 - **assignment03_6.py**: NMS 구현
+- **CIFAR10_CNN.pth**: 4번 학습 완료 후 `261025` 폴더에 생성되는 모델 파일
 - **../src/images/**: 입력 이미지 `seagull.jpg`, `two_apples1.png`~`two_apples3.png`
 - **../src/datasets/**: MNIST·CIFAR-10 데이터셋
-- **CIFAR10_CNN.pth**: 4번 학습 완료 후 `261025` 폴더에 생성되는 모델 파일
 - **../src/models/CIFAR10/CIFAR10_CNN.pth**: 4번 학습 완료 후 생성되는 모델 파일
 
 ## 실행 방식
