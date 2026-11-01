@@ -282,7 +282,7 @@ def train_one_epoch(model, data_loader, criterion, optimizer, device):
 
     # 학습 데이터를 DataLoader(train_loader)의 Batch 단위로 불러와 학습 반복
     for images, labels in data_loader:
-        # CPU로 이동
+        # GPU로 이동
         images = images.to(device)
         labels = labels.to(device)
 
@@ -328,7 +328,7 @@ def evaluate(model, data_loader, criterion, device):
     with torch.no_grad():
         # 평가 데이터를 DataLoader(test_loader)의 Batch 단위로 불러와 평가 반복
         for images, labels in data_loader:
-            # CPU로 이동
+            # GPU로 이동
             images = images.to(device)
             labels = labels.to(device)
 
