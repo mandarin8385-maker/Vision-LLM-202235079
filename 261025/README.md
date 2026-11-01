@@ -11,6 +11,7 @@
 - **../src/images/**: 입력 이미지 `seagull.jpg`, `two_apples1.png`~`two_apples3.png`
 - **../src/datasets/**: MNIST·CIFAR-10 데이터셋
 - **../src/models/CIFAR10/CIFAR10_CNN.pth**: 4번 학습 완료 후 생성되는 모델 파일
+- - **CIFAR10_CNN.pth**: 4번 학습 완료 후 `261025` 폴더에 생성되는 모델 파일
 
 ## 실행 방식
 
@@ -27,6 +28,6 @@ python assignment03_1.py
 ## 기타 참고 사항
 
 - macOS의 VS Code에서 작성했습니다. GPU 전체 실행 확인과 4번 모델 파일 생성은 학교 CUDA 환경에서 진행할 예정입니다.
-- 데이터셋이 없으면 처음 실행할 때 다운로드합니다. 모델 저장 폴더 `../src/models/CIFAR10/`는 미리 준비해야 합니다.
+- 데이터셋이 없으면 처음 실행할 때 다운로드합니다. 4번은 학습한 모델을 `../src/models/CIFAR10/`와 현재 실행 폴더에 각각 저장합니다. 저장 폴더를 미리 준비하고, `261025` 폴더에서 실행해야 합니다.
 - 6번은 박스와 신뢰도를 무작위로 생성하므로 결과가 달라질 수 있습니다.
 - **AI 활용**: ChatGPT로 TODO 구현 예시, Python 문법·오류 설명, README 정리에 도움을 받았으며, 코드는 직접 파일에 반영했습니다.
