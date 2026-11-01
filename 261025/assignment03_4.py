@@ -440,3 +440,8 @@ torch.save(
     save_data,
     "../src/models/CIFAR10/CIFAR10_CNN.pth",
 )
+
+torch.save(
+    save_data,
+    "CIFAR10_CNN.pth",
+)
