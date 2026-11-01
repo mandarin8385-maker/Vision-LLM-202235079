@@ -16,8 +16,6 @@
 
 필요한 라이브러리: NumPy, OpenCV, Matplotlib, CuPy, PyTorch, Torchvision, scikit-image
 
-1~4번은 NVIDIA CUDA GPU 환경에서, 5~6번은 CPU 환경에서도 실행할 수 있습니다.
-
 `src`와 `261025`는 같은 상위 폴더 아래에 있어야 합니다. 아래는 터미널 위치가 `261025`일 때의 실행 예시입니다.
 
 ```bash
