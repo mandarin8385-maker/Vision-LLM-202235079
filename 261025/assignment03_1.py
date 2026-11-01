@@ -4,9 +4,10 @@ import cv2
 import numpy as np
 import cupy as cp
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
-IMAGE_PATH = "../src/images/seagull.jpg"
+IMAGE_PATH = str(Path(__file__).resolve().parent / "../src/images/seagull.jpg")
 
 TARGET_WIDTH = 1280
 TARGET_HEIGHT = 720

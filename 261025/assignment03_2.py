@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import cupy as cp
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
 def relu(x):
@@ -76,7 +77,7 @@ def convolution2d(image, kernel, bias=0.0, stride=1, padding=0):
     return output
 
 
-IMAGE_PATH = "../src/images/seagull.jpg"
+IMAGE_PATH = str(Path(__file__).resolve().parent / "../src/images/seagull.jpg")
 
 TARGET_WIDTH = 1280
 TARGET_HEIGHT = 720

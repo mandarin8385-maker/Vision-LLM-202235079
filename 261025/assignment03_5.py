@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
 def draw_bbox(img, coord1, coord2, color, thickness=3, txt=""):
@@ -70,11 +71,11 @@ def get_contour(img_bgr):
         cntr_grn = max(contours_grn, key=cv2.contourArea)
 
     return cntr_red, cntr_grn
+str(Path(__file__).resolve().parent / "../src/images/two_apples1.png")
 
-
-apples1 = cv2.imread("../src/images/two_apples1.png")
-apples2 = cv2.imread("../src/images/two_apples2.png")
-apples3 = cv2.imread("../src/images/two_apples3.png")
+apples1 = cv2.imread(str(Path(__file__).resolve().parent / "../src/images/two_apples1.png"))
+apples2 = cv2.imread(str(Path(__file__).resolve().parent / "../src/images/two_apples2.png"))
+apples3 = cv2.imread(str(Path(__file__).resolve().parent / "../src/images/two_apples3.png"))
 
 apples1_rgb = cv2.cvtColor(apples1, cv2.COLOR_BGR2RGB)
 apples2_rgb = cv2.cvtColor(apples2, cv2.COLOR_BGR2RGB)

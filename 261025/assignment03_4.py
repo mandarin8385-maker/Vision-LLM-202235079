@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+from pathlib import Path
 
 
 seed = 42
@@ -42,14 +43,14 @@ test_transform = transforms.Compose([
 
 
 train_dataset = datasets.CIFAR10(
-    root="../src/datasets",
+    root = str(Path(__file__).resolve().parent / "../src/datasets"),
     train=True,
     transform=train_transform,
     download=True,
 )
 
 test_dataset = datasets.CIFAR10(
-    root="../src/datasets",
+    root = str(Path(__file__).resolve().parent / "../src/datasets"),
     train=False,
     transform=test_transform,
     download=True,
@@ -438,10 +439,10 @@ save_data = {
 
 torch.save(
     save_data,
-    "../src/models/CIFAR10/CIFAR10_CNN.pth",
+    str(Path(__file__).resolve().parent / "../src/models/CIFAR10/CIFAR10_CNN.pth")
 )
 
 torch.save(
     save_data,
-    "CIFAR10_CNN.pth",
+    str(Path(__file__).resolve().parent / "CIFAR10_CNN.pth")
 )

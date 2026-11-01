@@ -8,10 +8,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+from pathlib import Path
 
 
 SEED = 42
-DATA_ROOT = "../src/datasets"
+DATA_ROOT = str(Path(__file__).resolve().parent / "../src/datasets")
 
 BATCH_SIZE = 64
 TEST_BATCH_SIZE = 1000
@@ -180,7 +181,7 @@ def main_gpu():
     )
 
     test_dataset = datasets.MNIST(
-        root="../src/datasets",
+        root = str(Path(__file__).resolve().parent / "../src/datasets"),
         train=False,
         transform=transform,
         download=True,
