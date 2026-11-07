@@ -29,7 +29,7 @@ Vision-LLM-202235079/
 
 1. 두 파일 상단의 모델 경로를 확인하고, `water_camera.py`의 `pipeline`을 사용하는 카메라에 맞게 설정합니다.
 2. `arecord -l`로 마이크 번호를 확인하고, `water_assistant.py`의 `MIC_DEVICE`를 수정합니다.
-3. 터미널 두 개에서 `Project03` 폴더로 이동하고 수업용 Python 가상환경을 활성화합니다.
+3. 터미널 두 개에서 `Project03` 폴더로 이동하고 Python 가상환경을 활성화합니다.
 4. `python water_assistant.py`를 실행하고 JSON 입력 대기 문구가 나올 때까지 기다립니다.
 5. 다른 터미널에서 `python water_camera.py`를 실행하고 목표 횟수를 양의 정수로 입력합니다.
 6. 컵받침 위에 컵 하나를 약 2초 동안 고정해 기준을 설정합니다. 이후 컵을 화면 밖으로 들었다가 원래 위치에 내려놓으며 횟수를 확인합니다.
