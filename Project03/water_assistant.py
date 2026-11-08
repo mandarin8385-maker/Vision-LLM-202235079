@@ -151,7 +151,7 @@ def explain(vision_data, question):
             },
         ],
         max_tokens=MAX_TOKENS,
-        temperature=0.7,
+        temperature=0.3,
     )
     answer = response["choices"][0]["message"]["content"].strip()
     print(f"[Gemma] {answer}", flush=True)
