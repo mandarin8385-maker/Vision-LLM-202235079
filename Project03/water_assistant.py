@@ -108,10 +108,6 @@ def say(text):
 def explain(vision_data, question):
     quest = vision_data["quest"]
     vision_text = detections_to_text(vision_data)
-    if quest["completed"]:
-        facts = f"퀘스트 완료! 목표 {quest['goal']}회 중 {quest['count']}회를 기록했습니다."
-    else:
-        facts = f"목표 {quest['goal']}회 중 {quest['count']}회, 남은 횟수는 {quest['remaining']}회입니다."
 
     # Gemma에 프로젝트 상태와 질문 전달
     response = llm.create_chat_completion(
@@ -120,16 +116,22 @@ def explain(vision_data, question):
                 "role": "system",
                 "content": """
                     Instruction:
-                    당신은 '물 마시기 프로젝트'의 안내 도우미입니다.
-                    제공된 컵 탐지 정보와 확정 횟수에 따라 질문에 답하거나 격려하시오.
+                    당신은 사용자의 물 마시는 습관을 응원하는 친근한 도우미입니다.
+                    이 프로젝트에서는 Context의 확정 횟수를 사용자가 물을 마신 횟수로 간주합니다.
+                    물을 마신 사용자에게 자연스럽게 칭찬하고, 목표까지 몇 번 남았는지 알려 주세요.
+                    사용자가 질문하면 현재 진행 상황을 바탕으로 답해 주세요.
 
                     Constraint:
-                    횟수와 완료 여부는 Python이 계산한 Context를 그대로 따르시오.
-                    기록은 컵이 사라졌다 복귀한 횟수이며 실제 마신 양은 알 수 없습니다.
-                    탐지 결과에 없는 사실을 추측하지 마시오.
+                    횟수와 남은 횟수, 목표 완료 여부는 Context에 제공된 값을 정확히 따르세요.
+                    '컵 탐지', '컵 복귀', '컵 반환', '객체', '검출' 같은 기술적인 표현은 사용하지 마세요.
+                    물을 마신 양이나 건강 상태는 추측하지 마세요.
+                    목표를 완료했다면 추가로 마시라고 권하지 말고 목표 달성을 축하해 주세요.
+                    같은 칭찬을 반복하기보다 표현을 자연스럽게 바꿔 주세요.
 
                     Output Format:
-                    한국어 두 문장 이내.
+                    친근한 한국어 존댓말로 두 문장 이내.
+                    진행 중에는 물 마신 행동에 대한 칭찬과 남은 횟수를 포함하세요.
+                    목표 완료 시에는 달성을 축하하는 문장으로 답하세요.
                 """,
             },
             {
@@ -149,13 +151,13 @@ def explain(vision_data, question):
             },
         ],
         max_tokens=MAX_TOKENS,
-        temperature=0.3,
+        temperature=0.7,
     )
     answer = response["choices"][0]["message"]["content"].strip()
     print(f"[Gemma] {answer}", flush=True)
 
-    # Python에서 만든 횟수 안내와 Gemma 설명을 결합하여 음성 출력
-    say(f"{facts} {answer}")
+    # Gemma가 만든 칭찬과 진행 상황 안내를 음성으로 출력
+    say(answer)
 
 
 Path(AUDIO_FILE).parent.mkdir(parents=True, exist_ok=True)
@@ -212,7 +214,7 @@ while True:
                 if quest["completed"]:
                     explain(vision_data, "목표 달성을 한 문장으로 축하해 주세요.")
                 else:
-                    explain(vision_data, "컵 복귀가 기록되었습니다. 짧게 격려해 주세요.")
+                    explain(vision_data, "사용자가 물을 한 번 마셨습니다. 자연스럽게 칭찬하고 목표까지 남은 횟수를 알려 주세요.")
 
             # 카메라 창의 v 키 요청 → STT → Gemma → TTS
             if vision_data["voice_request_id"] > last_voice_request:
