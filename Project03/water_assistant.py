@@ -158,7 +158,6 @@ def explain(vision_data, question):
     say(f"{facts} {answer}")
 
 
-# -------------------- 여기부터 바로 실행 --------------------
 Path(AUDIO_FILE).parent.mkdir(parents=True, exist_ok=True)
 llm = Llama(
     model_path=GEMMA_MODEL_PATH,

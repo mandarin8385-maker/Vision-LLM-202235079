@@ -54,14 +54,22 @@ Path(JSON_PATH).parent.mkdir(parents=True, exist_ok=True)
 yolo = YOLO(YOLO_MODEL_PATH)
 
 # 카메라 파이프라인
+# pipeline = (
+#     "nvarguscamerasrc sensor-id=0 ! "
+#     "video/x-raw(memory:NVMM), width=1280, height=720, framerate=30/1 ! "
+#     "nvvidconv ! "
+#     "video/x-raw, format=BGRx ! "
+#     "videoconvert ! "
+#     "video/x-raw, format=BGR ! "
+#     "queue leaky=downstream max-size-buffers=1 ! "
+#     "appsink drop=true max-buffers=1 sync=false"
+# )
 pipeline = (
-    "nvarguscamerasrc sensor-id=0 ! "
-    "video/x-raw(memory:NVMM), width=1280, height=720, framerate=30/1 ! "
-    "nvvidconv ! "
-    "video/x-raw, format=BGRx ! "
-    "videoconvert ! "
-    "video/x-raw, format=BGR ! "
-    "queue leaky=downstream max-size-buffers=1 ! "
+    "v4l2src device=/dev/video0 ! "
+    "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
+    "videoconvert ! video/x-raw,format=BGR ! "
+    "queue leaky=downstream max-size-buffers=1 "
+    "max-size-bytes=0 max-size-time=0 ! "
     "appsink drop=true max-buffers=1 sync=false"
 )
 # 카메라 변경 시 위 pipeline의 내용만 교체
@@ -126,6 +134,7 @@ while True:
         selected_box = max(boxes, key=cup_area)
     else:
         selected_box = None
+    # 현재 시간
     now = time.monotonic()
     if last_frame_time is not None and now - last_frame_time > MAX_FRAME_GAP:
         samples = []
